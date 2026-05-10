@@ -38,7 +38,7 @@ jobs:
       - name: Generate data
         run: npm run generate-data
         env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_API_KEY: ${{ secrets.DS_API_KEY }}
 
       - name: Build
         run: npm run build:static -w packages/frontend
