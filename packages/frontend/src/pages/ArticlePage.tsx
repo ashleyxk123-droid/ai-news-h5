@@ -51,9 +51,14 @@ export function ArticlePage() {
       </div>
 
       <article className="p-4 md:max-w-[720px] md:mx-auto md:py-8">
-        <h1 className="text-xl md:text-2xl font-bold text-app-text-primary leading-snug mb-3">
-          {article.title}
+        <h1 className="text-xl md:text-2xl font-bold text-app-text-primary leading-snug mb-1">
+          {article.titleZh || article.title}
         </h1>
+        {article.titleZh && (
+          <p className="text-sm text-app-text-secondary mb-3 italic">
+            {article.title}
+          </p>
+        )}
 
         <div className="flex items-center flex-wrap gap-2 mb-4 text-xs text-app-text-tertiary">
           <span className="font-medium text-app-text-secondary">{article.sourceName}</span>
@@ -81,6 +86,17 @@ export function ArticlePage() {
             阅读原文
           </a>
         </div>
+
+        {article.titleZh && article.summaryZh && (
+          <div className="mb-4 p-3 rounded-lg bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800">
+            <span className="text-[10px] font-medium text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-1.5 py-0.5 rounded mb-1.5 inline-block">
+              AI 翻译
+            </span>
+            <p className="text-sm text-app-text-primary leading-relaxed mt-1">
+              {article.summaryZh}
+            </p>
+          </div>
+        )}
 
         {article.content ? (
           <div

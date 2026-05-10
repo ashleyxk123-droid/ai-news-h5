@@ -12,6 +12,8 @@ export interface Article {
   url: string;
   imageUrl?: string;
   author?: string;
+  titleZh?: string;
+  summaryZh?: string;
 }
 
 export interface CategoryInfo {

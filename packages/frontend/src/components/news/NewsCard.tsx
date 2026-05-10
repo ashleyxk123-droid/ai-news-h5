@@ -28,6 +28,10 @@ const categoryNameMap: Record<string, string> = {
 };
 
 export function NewsCard({ article }: NewsCardProps) {
+  const showTitle = article.titleZh || article.title;
+  const showSummary = article.summaryZh || article.summary;
+  const isTranslated = !!article.titleZh;
+
   return (
     <Link
       to={`/article/${article.id}`}
@@ -36,10 +40,10 @@ export function NewsCard({ article }: NewsCardProps) {
       <div className="flex gap-3">
         <div className="flex-1 min-w-0">
           <h3 className="text-[15px] font-medium text-app-text-primary leading-snug line-clamp-2 mb-2">
-            {article.title}
+            {showTitle}
           </h3>
           <p className="text-[13px] text-app-text-secondary leading-relaxed line-clamp-2 mb-2.5">
-            {article.summary}
+            {showSummary}
           </p>
           <div className="flex items-center gap-2 text-xs text-app-text-tertiary">
             <span className="font-medium text-app-text-secondary">{article.sourceName}</span>
@@ -47,6 +51,9 @@ export function NewsCard({ article }: NewsCardProps) {
             <span>{relativeTime(article.publishedAt, article.language)}</span>
             {article.language === 'en' && (
               <span className="px-1.5 py-0.5 rounded bg-app-bg-tertiary text-[10px]">EN</span>
+            )}
+            {isTranslated && (
+              <span className="px-1.5 py-0.5 rounded bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300 text-[10px]">中文</span>
             )}
             {article.category && (
               <span className={`px-1.5 py-0.5 rounded text-[10px] font-medium ${categoryColorMap[article.category] || 'bg-gray-100 text-gray-600'}`}>
